@@ -22,7 +22,7 @@ Input:
 
 Solution:
 
-![alt text](http://url/to/img.png)
+![alt text](https://github.com/SrinivasaRaoMakkena/AndroidPhotonInfotechTDD/blob/master/ShortestPathPhotonTDD.PNG)
  
 
 Output:
