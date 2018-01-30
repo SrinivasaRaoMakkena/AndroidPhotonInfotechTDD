@@ -1,5 +1,5 @@
 # AndroidPhotonInfotechTDD
-Android project to find out the shortest path in matrix from top left to bottom-down in 2-D matrix with Grapgicl User Interface to enter matrix elements with Test Driven Development(TDD) approach.
+Android project to find out the shortest path in matrix from  left to right in 2-D matrix with Graphical User Interface(GUI) to enter matrix elements with the help of Test Driven Development(TDD) approach. (Assuming First and Last rows are also adjacent)
 
 
 Test Cases:
