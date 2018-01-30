@@ -20,6 +20,9 @@ Input:
 
 3 7 2 8 6 4
 
+Solution:
+
+![alt text](http://url/to/img.png)
  
 
 Output:
@@ -28,7 +31,7 @@ Yes
 
 16
 
-[1 2 3 4 4 5]
+[1 2 3 4 4 5] (1st row, 2nd row, 3rd row,4th row, 4th row,5th row)
 
  
 
