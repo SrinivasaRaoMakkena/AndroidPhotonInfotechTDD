@@ -1,6 +1,7 @@
 package com.example.androidphotoninfotechtdd;
 
 import com.example.androidphotoninfotechtdd.businesslogic.Matrix_creation;
+import com.example.androidphotoninfotechtdd.businesslogic.SortestPath;
 
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -12,9 +13,10 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class ExampleUnitTest {
+public class ShortestPathTestCases {
 
     Matrix_creation object =new Matrix_creation();
+    SortestPath s = new SortestPath();
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
@@ -33,12 +35,13 @@ public class ExampleUnitTest {
 
             assertEquals("good",object.setEelementsInMatrix(x));
             object.setEelementsInMatrix(x);
+s.setEelementsInMatrix(x);
             // fail("Should throw an exception if one or more of given numbers are negative");
         } catch (Exception e) {
 
 
         }
-
+        s.path_weight();
         object.path_weight();
         // having full path
         assertEquals("yes",object.havingFullpath());

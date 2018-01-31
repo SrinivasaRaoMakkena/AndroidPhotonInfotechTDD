@@ -19,6 +19,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.androidphotoninfotechtdd.businesslogic.Matrix_creation;
+import com.example.androidphotoninfotechtdd.businesslogic.SortestPath;
+
+import java.net.Socket;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -60,6 +63,11 @@ public class MainActivity extends AppCompatActivity {
                         matrix = new String[row_val][col_val];
 
                         get_result.setVisibility(View.VISIBLE);
+
+                        //Sri
+                        SortestPath s = new SortestPath();
+                        s.path_weight();
+
 
 
                         for (int i = 0; i < row_val; i++) {

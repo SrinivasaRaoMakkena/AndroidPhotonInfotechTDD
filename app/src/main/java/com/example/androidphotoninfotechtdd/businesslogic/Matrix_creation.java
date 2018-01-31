@@ -70,6 +70,8 @@ public class Matrix_creation {
 	}
 	}
 
+
+
 	public String path_weight() {
 		
 		
@@ -125,11 +127,6 @@ public class Matrix_creation {
                				}
                				
                				
-               				/*do
-               				{
-               					
-               					System.out.println(""+r_info.getAll_nodes().get(j).getCol_node());
-               				}while(r_info.getAll_nodes().get(j).getCol_node()/(size_column-1)==1);*/
 
                    		
                			
@@ -191,7 +188,7 @@ public class Matrix_creation {
 		int smallest_row=0;
 		int smallest_column=colum;
 		
-		
+		//small value in first column
 			for(int i=0;i<size_row;i++)
 			{
 				if(small_val>matrix[i][colum])
@@ -203,7 +200,7 @@ public class Matrix_creation {
 				
 			}
 				
-			
+
 			for(int i=0;i<size_row;i++)
 			{
 				if(small_val==matrix[i][colum])
@@ -211,11 +208,7 @@ public class Matrix_creation {
 				
 					Result_info result=new Result_info();
 						rwo_travelsal=new ArrayList<Node_info> ();
-					
 
-					
-					
-					
 					System.out.print("\n");
 					System.out.print("Values are "+i+"\t"+colum+"\t"+ small_val);
 					System.out.print("\n");
@@ -338,7 +331,7 @@ public class Matrix_creation {
 			}
 			
 			
-			
+			//y<z
 		}else if(matrix[rowtop][colu]<matrix[row_dow][colu])
 		{
 			// small y
