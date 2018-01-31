@@ -1,0 +1,24 @@
+ Finding it from right side(from R to L). Take the right 2 columns from matrix.
+
+8 6
+7 4
+9 5
+2 6
+6 4
+If now we are on the cell with value 8, the next step can be 6/4/4. Of course we choose 4 because we want a smaller cost. 
+If now we are on the cell with value 7, the next step can be 6/4/5, we will choose 4. 
+So the 2 columns can be merged into single column as below
+
+12   //8+4
+11   //7+4
+13   //9+4
+6    //2+4
+10   //6+4
+Now repeat the last two columns:
+
+2  12
+2  11
+9  13
+3  6
+8  10
+Finally the matrix will be merged into one column, the smallest value in the column has the lowest cost.
