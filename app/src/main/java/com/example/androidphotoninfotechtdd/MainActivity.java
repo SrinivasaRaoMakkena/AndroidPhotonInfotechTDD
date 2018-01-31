@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     Button btn, get_result;
     String[][] matrix;
     int row_val, col_val;
-    Matrix_creation object = new Matrix_creation();
+    SortestPath object = new SortestPath();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

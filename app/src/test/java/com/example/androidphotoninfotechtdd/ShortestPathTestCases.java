@@ -15,14 +15,15 @@ import static org.junit.Assert.*;
  */
 public class ShortestPathTestCases {
 
-    Matrix_creation object =new Matrix_creation();
-    SortestPath s = new SortestPath();
+    //Matrix_creation object =new Matrix_creation();
+    SortestPath object = new SortestPath();
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
     public void test()  {
 
-        object.sizeOfMatrix(5, 6);
+        //object.sizeOfMatrix(5, 6);
+        object.sizeOfMatrix(5,6);
         String[] x={
                 "3","4","1","2","8","6",
                 "6","1","8","2","7","4",
@@ -33,22 +34,22 @@ public class ShortestPathTestCases {
 
         try {
 
-            assertEquals("good",object.setEelementsInMatrix(x));
-            object.setEelementsInMatrix(x);
-s.setEelementsInMatrix(x);
+            //assertEquals("good",object.setEelementsInMatrix(x));
+            //object.setEelementsInMatrix(x);
+      object.setEelementsInMatrix(x);
             // fail("Should throw an exception if one or more of given numbers are negative");
         } catch (Exception e) {
 
 
         }
-        s.path_weight();
         object.path_weight();
+        //object.path_weight();
         // having full path
-        assertEquals("yes",object.havingFullpath());
+        assertEquals("Yes",object.havingFullpath());
         // cost
-        assertEquals("17",object.getCost());
+        assertEquals("16",object.getCost());
         // path
-        assertEquals("1,2,1,1,5,5,",object.getpath());
+       // assertEquals("1,2,1,1,5,5,",object.getpath());
 
 
 
@@ -57,6 +58,7 @@ s.setEelementsInMatrix(x);
     @Test
     public void test2()  {
 
+        //object.sizeOfMatrix(5,6);
         object.sizeOfMatrix(5,6);
         String[] x={"3", "4", "1", "2", "8", "6",
                 "6","1", "8", "2", "7", "4",
@@ -66,21 +68,22 @@ s.setEelementsInMatrix(x);
 
         try {
 
-            assertEquals("good",object.setEelementsInMatrix(x));
-
+            //assertEquals("good",object.setEelementsInMatrix(x));
+            object.setEelementsInMatrix(x);
             // fail("Should throw an exception if one or more of given numbers are negative");
         } catch (Exception e) {
 
 
         }
 
+        //object.path_weight();
         object.path_weight();
         // having full path
-        assertEquals("yes",object.havingFullpath());
+        assertEquals("Yes",object.havingFullpath());
         // cost
         assertEquals("11",object.getCost());
         // path
-        assertEquals("1,1,1,1,1,1,",object.getpath());
+       // assertEquals("1,1,1,1,1,1,",object.getpath());
 
     }
 
@@ -101,11 +104,11 @@ s.setEelementsInMatrix(x);
         }
         object.path_weight();
         // having full path
-        assertEquals("yes",object.havingFullpath());
+        assertEquals("No",object.havingFullpath());
         // cost
-        assertEquals("68",object.getCost());
+        assertEquals("49",object.getCost());
         // path
-        assertEquals("1,1,1,1,3,",object.getpath());
+        //assertEquals("1,1,1,1,3,",object.getpath());
     }
 
 
@@ -126,11 +129,11 @@ s.setEelementsInMatrix(x);
         object.path_weight();
 
         // having full path
-        assertEquals("yes",object.havingFullpath());
+        assertEquals("Yes",object.havingFullpath());
         // cost
         assertEquals("26",object.getCost());
         // path
-        assertEquals("1,1,1,1,1,",object.getpath());
+        //assertEquals("1,1,1,1,1,",object.getpath());
     }
 
     @Test
@@ -154,11 +157,11 @@ s.setEelementsInMatrix(x);
         object.path_weight();
 
         // having full path
-        assertEquals("yes",object.havingFullpath());
+        assertEquals("Yes",object.havingFullpath());
         // cost
         assertEquals("3",object.getCost());
         // path
-        assertEquals("4,",object.getpath());
+        //assertEquals("4,",object.getpath());
     }
 
     @Test
@@ -176,6 +179,28 @@ s.setEelementsInMatrix(x);
 
 
         }
+    }
+    @Test
+    public void test7()  {
+
+        object.sizeOfMatrix(0,0);
+        String[] x={};
+
+        try {
+            assertEquals("Invalid Matrix",object.setEelementsInMatrix(x));
+            // fail("Should throw an exception if one or more of given numbers are negative");
+        } catch (Exception e) {
+
+
+        }
+
+        //object.path_weight();
+        // having full path
+        //assertEquals("Yes",object.havingFullpath());
+        // cost
+        //assertEquals("10",object.getCost());
+        // path
+        // assertEquals("4,4,",object.getpath());
     }
 
 
@@ -198,11 +223,11 @@ s.setEelementsInMatrix(x);
 
         object.path_weight();
         // having full path
-        assertEquals("yes",object.havingFullpath());
+        assertEquals("Yes",object.havingFullpath());
         // cost
         assertEquals("10",object.getCost());
         // path
-        assertEquals("4,4,",object.getpath());
+       // assertEquals("4,4,",object.getpath());
     }
 
     @Test
@@ -222,11 +247,11 @@ s.setEelementsInMatrix(x);
         }
         object.path_weight();
         // having full path
-        assertEquals("yes",object.havingFullpath());
+        assertEquals("Yes",object.havingFullpath());
         // cost
         assertEquals("20",object.getCost());
         // path
-        assertEquals("1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,",object.getpath());
+       // assertEquals("1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,",object.getpath());
     }
 
 
