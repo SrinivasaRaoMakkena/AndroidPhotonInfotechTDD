@@ -157,5 +157,34 @@ public class UnitTestTDD {
 
     }
 
+    @Test
+    public void shortestPathTest() {
+        cost.sizeOfMatrix(5, 6);
+        String[] x = {"3", "4", "1", "2", "8", "6",
+                "6", "1", "8", "2", "7", "4",
+                "5", "9", "3", "9", "9", "5",
+                "8", "4", "1", "3", "2", "6",
+                "3", "7", "2", "1", "2", "3"};
+
+        try {
+
+            cost.setEelementsInMatrix(x);
+            // fail("Should throw an exception if one or more of given numbers are negative");
+        } catch (Exception e) {
+
+
+        }
+
+        //object.path_weight();
+        cost.path_weight();
+        // having full path
+        assertEquals("Yes", cost.havingFullpath());
+        // cost
+        assertEquals("11", cost.getCost());
+        // path
+        assertEquals("12154", cost.getpath());
+
+    }
+
 
 }

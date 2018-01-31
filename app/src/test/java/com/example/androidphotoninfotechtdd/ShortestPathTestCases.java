@@ -45,7 +45,7 @@ public class ShortestPathTestCases {
         // cost
         assertEquals("16", object.getCost());
         // path
-        // assertEquals("121155,",object.getpath());
+        assertEquals("12444", object.getpath());
 
 
     }
@@ -77,7 +77,7 @@ public class ShortestPathTestCases {
         // cost
         assertEquals("11", object.getCost());
         // path
-        // assertEquals("1,1,1,1,1,1,",object.getpath());
+        assertEquals("12154", object.getpath());
 
     }
 
@@ -102,7 +102,7 @@ public class ShortestPathTestCases {
         // cost
         assertEquals("49", object.getCost());
         // path
-        //assertEquals("1,1,1,1,3,",object.getpath());
+        assertEquals("111", object.getpath());
     }
 
 
@@ -155,7 +155,7 @@ public class ShortestPathTestCases {
         // cost
         assertEquals("3", object.getCost());
         // path
-        //assertEquals("4,",object.getpath());
+        assertEquals("4", object.getpath());
     }
 
     @Test
@@ -215,7 +215,7 @@ public class ShortestPathTestCases {
         // cost
         assertEquals("10", object.getCost());
         // path
-        // assertEquals("4,4,",object.getpath());
+        assertEquals("4", object.getpath());
     }
 
     @Test

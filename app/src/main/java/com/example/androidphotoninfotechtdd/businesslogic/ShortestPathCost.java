@@ -29,8 +29,8 @@ public class ShortestPathCost {
                     try {
 
                         matrix[i][j] = Integer.parseInt(x[in_posi]);
-                        if (matrix[i][j]<0){
-                             throw new Exception();
+                        if (matrix[i][j] < 0) {
+                            throw new Exception();
                         }
 
                     } catch (NumberFormatException e) {
@@ -65,55 +65,89 @@ public class ShortestPathCost {
 
     public String path_weight() {
         int count = 0;
-        if (size_column > 1) {
-            for (int colN = size_column - 2; colN >= 0; colN--) {
-                count++;
-                for (int rowN = 0; rowN < size_row; rowN++) {
-                    findShortPath(rowN, colN, matrix[rowN][colN]);
-
-                }
-                int shortCostUptoThatColn = findSmallestOneColumn(colN);
-                findSmallestPath(colN);
-                System.out.println("cost minimum upto that coln " + shortCostUptoThatColn);
-
-                if (shortCostUptoThatColn < 50) {
-                    result[1] = shortCostUptoThatColn + "";
-                    result[0] = "Yes";
-
-
-                } else {
-                    result[1] = findSmallestOneColumn(colN + 1) + "";
-                    System.out.println("result[1] " + result[1]);
-                    result[0] = "No";
-                    break;
-                }
-            }
+        if (findSmallestOneColumn(0) > 50) {
+            result[0] = "No";
+            result[1] = 0 + "";
+            path1 = "[]";
         } else {
-            result[1] = findSmallestOneColumn(0) + "";
-            result[0] = "Yes";
+            if (size_column > 1) {
+                for (int colN = size_column - 2; colN >= 0; colN--) {
+                    count++;
+                    for (int rowN = 0; rowN < size_row; rowN++) {
+                        findShortPath(rowN, colN, matrix[rowN][colN]);
+
+                    }
+                    int shortCostUptoThatColn = findSmallestOneColumn(colN);
+                    //   findSmallestOneColumnPath(colN);//to find path
+                    findSmallestPath(colN);
+                    System.out.println("cost minimum upto that coln " + shortCostUptoThatColn);
+
+                    if (shortCostUptoThatColn < 50) {
+                        findSmallestOneColumnPath(colN);//to find path
+                        result[1] = shortCostUptoThatColn + "";
+                        result[0] = "Yes";
+
+
+                    } else {
+                        result[1] = findSmallestOneColumn(colN + 1) + "";
+                        System.out.println("result[1] " + result[1]);
+                        result[0] = "No";
+                        break;
+                    }
+                }
+            } else {
+                findSmallestOneColumnPath(0);
+                result[1] = findSmallestOneColumn(0) + "";
+                result[0] = "Yes";
+            }
         }
 //            if (count == size_column-1) {
 //                result[1] = findSmallestOneColumn(0);
 //            }
 //            result[1] = ""+ShortestPathCost;
 //            System.out.println("cost minimum "+ShortestPathCost);
-        return "" + result[1];
-    }
+            return "" + result[1];
+        }
+//String path1 = "";
 
     private int findSmallestOneColumn(int colum) {
         int small_val = matrix[0][colum];
         int smallest_row = 0;
         int smallest_column = colum;
-
+        //path1+=smallest_row;
         //small value in first column
         for (int i = 0; i < size_row; i++) {
             if (small_val > matrix[i][colum]) {
                 small_val = matrix[i][colum];
                 smallest_row = i;
+                //  path1+=smallest_row;
                 smallest_column = colum;
             }
 
         }
+        // path1+= smallest_row;
+        return small_val;
+    }
+
+
+    String path1 = "";
+
+    private int findSmallestOneColumnPath(int colum) {
+        int small_val = matrix[0][colum];
+        int smallest_row = 1;
+        int smallest_column = colum;
+        //path1=smallest_row+path1;
+        //small value in first column
+        for (int i = 0; i < size_row; i++) {
+            if (small_val > matrix[i][colum]) {
+                small_val = matrix[i][colum];
+                smallest_row = i + 1;
+
+                smallest_column = colum;
+            }
+
+        }
+        path1 = smallest_row + path1;
         return small_val;
     }
 
@@ -230,8 +264,8 @@ public class ShortestPathCost {
     }
 
     public String getpath() {
-        System.out.print("kznknzvkvzkk.s" + result[2]);
-        return result[2];
+        //System.out.print("" + result[2]);
+        return path1;
     }
 
 
