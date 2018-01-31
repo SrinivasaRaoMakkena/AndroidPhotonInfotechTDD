@@ -1,27 +1,17 @@
 package com.example.androidphotoninfotechtdd;
 
 import android.app.Dialog;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.InputFilter;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.androidphotoninfotechtdd.businesslogic.Matrix_creation;
-import com.example.androidphotoninfotechtdd.businesslogic.SortestPath;
-
-import java.net.Socket;
+import com.example.androidphotoninfotechtdd.businesslogic.ShortestPathCost;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -32,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     Button btn, get_result;
     String[][] matrix;
     int row_val, col_val;
-    SortestPath object = new SortestPath();
+    ShortestPathCost object = new ShortestPathCost();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +54,9 @@ public class MainActivity extends AppCompatActivity {
 
                         get_result.setVisibility(View.VISIBLE);
 
-                        //Sri
-                        SortestPath s = new SortestPath();
-                        s.path_weight();
 
+                        ShortestPathCost s = new ShortestPathCost();
+                        s.path_weight();
 
 
                         for (int i = 0; i < row_val; i++) {
@@ -97,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                                         final EditText val_e = (EditText) dialog.findViewById(R.id.input_e);
                                         Button dialogButton = (Button) dialog.findViewById(R.id.set_node);
 
-                                        Button cancel = (Button)dialog.findViewById(R.id.set_cancel);
+                                        Button cancel = (Button) dialog.findViewById(R.id.set_cancel);
                                         cancel.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View view) {
@@ -156,9 +145,9 @@ public class MainActivity extends AppCompatActivity {
                 if (row_val * col_val == count) {
                     if (!object.setEelementsInMatrix(elemnts).equals("Invalid Matrix")) {
 
-                        result_t.setText( object.path_weight());
+                        result_t.setText(object.path_weight());
 
-                       // result_t.setText("Full path: " + object.havingFullpath() + "\n Total Cost " + object.getCost() + "\n Path" + object.getpath());
+                        // result_t.setText("Full path: " + object.havingFullpath() + "\n Total Cost " + object.getCost() + "\n Path" + object.getpath());
                     } else
                         result_t.setText("Invalid Matrix");
 
