@@ -9,7 +9,7 @@ public class ShortestPathCost {
 
     static int size_row, size_column;
     int[][] matrix;
-   
+
 
     public String[] result = new String[3];
 
@@ -29,9 +29,14 @@ public class ShortestPathCost {
                     try {
 
                         matrix[i][j] = Integer.parseInt(x[in_posi]);
+                        if (matrix[i][j]<0){
+                             throw new Exception();
+                        }
 
                     } catch (NumberFormatException e) {
 
+                        return "Invalid Matrix";
+                    } catch (Exception e) {
                         return "Invalid Matrix";
                     }
 

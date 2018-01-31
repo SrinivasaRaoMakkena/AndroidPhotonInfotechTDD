@@ -96,7 +96,7 @@ public class UnitTestTDD {
 
     }
 
-    //4. Change in Requirement -- Testing for Alphabets in place of numbers
+    //4. Change in Requirement -- Testcase for avoiding Alphabets
 
     @Test
     public void alphabetsTest() {
@@ -104,6 +104,25 @@ public class UnitTestTDD {
         cost.sizeOfMatrix(3, 3);
         String[] x = {"5", "4", "H",
                 "8", "M", "7",
+                "5", "7", "5"};
+
+        try {
+            assertEquals("Invalid Matrix", cost.setEelementsInMatrix(x));
+            // fail("Should throw an exception if one or more of given numbers are negative");
+        } catch (Exception e) {
+
+
+        }
+    }
+
+    //4. Change in Requirement -- Testcase for avoiding Negative elements
+
+    @Test
+    public void negativeElementsTest() {
+
+        cost.sizeOfMatrix(3, 3);
+        String[] x = {"5", "4", "-2",
+                "8", "-13", "7",
                 "5", "7", "5"};
 
         try {
