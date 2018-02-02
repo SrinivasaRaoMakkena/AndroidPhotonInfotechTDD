@@ -22,12 +22,21 @@ public class MainActivity extends AppCompatActivity {
     Button btn, get_result;
     String[][] matrix;
     int row_val, col_val;
-    ShortestPathCost object = new ShortestPathCost();
+    ShortestPathCost object;
+
+
+    public void clear(View view) {
+        tl.removeAllViews();
+        result_t.setText("");
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.matrix_creation);
+
+        object = new ShortestPathCost();
 
         tl = (TableLayout) findViewById(R.id.matrix);
         row_e = (EditText) findViewById(R.id.row);
@@ -55,18 +64,20 @@ public class MainActivity extends AppCompatActivity {
                         get_result.setVisibility(View.VISIBLE);
 
 
-                        ShortestPathCost s = new ShortestPathCost();
-                        s.path_weight();
+                        //ShortestPathCost s = new ShortestPathCost();
+                        // object.path_weight();
 
-
+                        int idForMatrixElements = 1;
                         for (int i = 0; i < row_val; i++) {
                             TableRow tableRow = new TableRow(MainActivity.this);
 
                             for (int j = 0; j < col_val; j++) {
 
                                 final TextView t = new TextView(MainActivity.this);
-                                t.setMinWidth(100);
-                                t.setMinHeight(100);
+                                t.setId(idForMatrixElements++);
+
+                                t.setWidth(100);
+                                t.setHeight(100);
                                 t.setGravity(Gravity.CENTER);
                                 t.setBackgroundResource(R.drawable.matrix_bg);
                                 final int x = i;
@@ -144,13 +155,9 @@ public class MainActivity extends AppCompatActivity {
 
                 if (row_val * col_val == count) {
                     if (!object.setEelementsInMatrix(elemnts).equals("Invalid Matrix")) {
-
-                        result_t.setText(object.path_weight());
-
-                        // result_t.setText("Full path: " + object.havingFullpath() + "\n Total Cost " + object.getCost() + "\n Path" + object.getpath());
+                        result_t.setText("Total Cost: " + object.path_weight() + "\nFull path: " + object.havingFullpath() + "\n Path: " + object.getpath());
                     } else
                         result_t.setText("Invalid Matrix");
-
 
                 } else
                     result_t.setText("Matrix is not well formatted");
@@ -160,4 +167,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
 }

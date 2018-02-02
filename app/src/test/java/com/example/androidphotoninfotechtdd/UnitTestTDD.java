@@ -182,7 +182,7 @@ public class UnitTestTDD {
         // cost
         assertEquals("11", cost.getCost());
         // path
-        assertEquals("12154", cost.getpath());
+        assertEquals("121545", cost.getpath());
 
     }
 

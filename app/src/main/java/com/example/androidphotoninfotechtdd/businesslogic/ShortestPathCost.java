@@ -1,9 +1,5 @@
 package com.example.androidphotoninfotechtdd.businesslogic;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Stack;
-
 
 public class ShortestPathCost {
 
@@ -18,7 +14,7 @@ public class ShortestPathCost {
         size_row = m;
         size_column = n;
         matrix = new int[m][n];
-        //final_list=new ArrayList<Result_info>();
+
     }
 
     public String setEelementsInMatrix(String[] x) {
@@ -71,6 +67,7 @@ public class ShortestPathCost {
             path1 = "[]";
         } else {
             if (size_column > 1) {
+                findSmallestOneColumnPath(size_column - 1);
                 for (int colN = size_column - 2; colN >= 0; colN--) {
                     count++;
                     for (int rowN = 0; rowN < size_row; rowN++) {
@@ -78,7 +75,7 @@ public class ShortestPathCost {
 
                     }
                     int shortCostUptoThatColn = findSmallestOneColumn(colN);
-                    //   findSmallestOneColumnPath(colN);//to find path
+
                     findSmallestPath(colN);
                     System.out.println("cost minimum upto that coln " + shortCostUptoThatColn);
 
@@ -101,26 +98,22 @@ public class ShortestPathCost {
                 result[0] = "Yes";
             }
         }
-//            if (count == size_column-1) {
-//                result[1] = findSmallestOneColumn(0);
-//            }
-//            result[1] = ""+ShortestPathCost;
-//            System.out.println("cost minimum "+ShortestPathCost);
-            return "" + result[1];
-        }
-//String path1 = "";
+
+        return "" + result[1];
+    }
+
 
     private int findSmallestOneColumn(int colum) {
         int small_val = matrix[0][colum];
         int smallest_row = 0;
         int smallest_column = colum;
-        //path1+=smallest_row;
+
         //small value in first column
         for (int i = 0; i < size_row; i++) {
             if (small_val > matrix[i][colum]) {
                 small_val = matrix[i][colum];
                 smallest_row = i;
-                //  path1+=smallest_row;
+
                 smallest_column = colum;
             }
 
@@ -136,8 +129,7 @@ public class ShortestPathCost {
         int small_val = matrix[0][colum];
         int smallest_row = 1;
         int smallest_column = colum;
-        //path1=smallest_row+path1;
-        //small value in first column
+
         for (int i = 0; i < size_row; i++) {
             if (small_val > matrix[i][colum]) {
                 small_val = matrix[i][colum];
@@ -199,10 +191,6 @@ public class ShortestPathCost {
 
             z = matrix[row_dow][colu];// bottom element
 
-
-            // String[] test=ChooseSmallestElement(row ,row_top,row_dow,colu);
-
-
             int a = row;
             int b = row_top;
             int c = row_dow;
@@ -216,9 +204,6 @@ public class ShortestPathCost {
             matrix[rowToChange][colToChange] += smallAmongThree;
 
             display_matrix();
-
-            //  findSmallPath(x,y,z,row,row_top,row_dow,colu);
-
 
             System.out.println("small " + smallAmongThree);
 
@@ -240,19 +225,6 @@ public class ShortestPathCost {
     }
 
     String path = "";
-//    private String findSmallPath(int x, int y, int z,int row,int rowT,int rowD,int col) {
-//
-//       if (matrix[row][col]==findSmallElement(x,y,z)){
-//           path = row + path;
-//       }else if (matrix[rowT][col]==findSmallElement(x,y,z)){
-//           path = rowT + path;
-//       }else if (matrix[rowD][col]==findSmallElement(x,y,z)){
-//           path = rowD + path;
-//       }
-//    result[2]=path;
-//    return path;
-//
-//    }
 
     public String havingFullpath() {
         return result[0];
@@ -264,7 +236,8 @@ public class ShortestPathCost {
     }
 
     public String getpath() {
-        //System.out.print("" + result[2]);
+
+
         return path1;
     }
 
