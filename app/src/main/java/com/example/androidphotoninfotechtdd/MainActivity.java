@@ -11,6 +11,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.example.androidphotoninfotechtdd.businesslogic.MatrixCreation;
 import com.example.androidphotoninfotechtdd.businesslogic.ShortestPathCost;
 
 
@@ -23,13 +24,8 @@ public class MainActivity extends AppCompatActivity {
     String[][] matrix;
     int row_val, col_val;
     ShortestPathCost object;
+    MatrixCreation matrixCreation;
 
-
-    public void clear(View view) {
-        tl.removeAllViews();
-        result_t.setText("");
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.matrix_creation);
 
         object = new ShortestPathCost();
+        matrixCreation = new MatrixCreation();
 
         tl = (TableLayout) findViewById(R.id.matrix);
         row_e = (EditText) findViewById(R.id.row);
@@ -46,127 +43,125 @@ public class MainActivity extends AppCompatActivity {
         get_result.setVisibility(View.GONE);
         result_t = (TextView) findViewById(R.id.results);
 
+    }
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                tl.removeAllViewsInLayout();
+    //Generating matrix and GUI for that matrix
+    public void generateMatrix(View view) {
+        tl.removeAllViewsInLayout();
 
-                if (!row_e.getText().toString().equals("") && !col_e.getText().toString().equals("")) {
-                    if (!row_e.getText().toString().equals("0") && !col_e.getText().toString().equals("0")) {
+        if (!row_e.getText().toString().equals("") && !col_e.getText().toString().equals("")) {
+            if (!row_e.getText().toString().equals("0") && !col_e.getText().toString().equals("0")) {
 
-                        row_val = Integer.parseInt(row_e.getText().toString());
-                        col_val = Integer.parseInt(col_e.getText().toString());
-                        object.sizeOfMatrix(row_val, col_val);
+                row_val = Integer.parseInt(row_e.getText().toString());
+                col_val = Integer.parseInt(col_e.getText().toString());
+                matrixCreation.sizeOfMatrix(row_val, col_val);
 
-                        matrix = new String[row_val][col_val];
+                matrix = new String[row_val][col_val];
 
-                        get_result.setVisibility(View.VISIBLE);
+                get_result.setVisibility(View.VISIBLE);
 
 
-                        //ShortestPathCost s = new ShortestPathCost();
-                        // object.path_weight();
+                int idForMatrixElements = 1;
+                for (int i = 0; i < row_val; i++) {
+                    TableRow tableRow = new TableRow(MainActivity.this);
 
-                        int idForMatrixElements = 1;
-                        for (int i = 0; i < row_val; i++) {
-                            TableRow tableRow = new TableRow(MainActivity.this);
+                    for (int j = 0; j < col_val; j++) {
 
-                            for (int j = 0; j < col_val; j++) {
+                        final TextView t = new TextView(MainActivity.this);
+                        t.setId(idForMatrixElements++);
 
-                                final TextView t = new TextView(MainActivity.this);
-                                t.setId(idForMatrixElements++);
+                        t.setWidth(100);
+                        t.setHeight(100);
+                        t.setGravity(Gravity.CENTER);
+                        t.setBackgroundResource(R.drawable.matrix_bg);
+                        final int x = i;
+                        final int y = j;
+                        t.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                // dialog here
 
-                                t.setWidth(100);
-                                t.setHeight(100);
-                                t.setGravity(Gravity.CENTER);
-                                t.setBackgroundResource(R.drawable.matrix_bg);
-                                final int x = i;
-                                final int y = j;
-                                t.setOnClickListener(new View.OnClickListener() {
+                                // custom dialog
+                                final Dialog dialog = new Dialog(MainActivity.this);
+                                dialog.setContentView(R.layout.input_matrix);
+                                // set the custom dialog components - text, image and button
+                                TextView text = (TextView) dialog.findViewById(R.id.value_heading);
+                                text.setText("Enetr Value at : " + x + " , " + y);
+
+                                final EditText val_e = (EditText) dialog.findViewById(R.id.input_e);
+                                Button dialogButton = (Button) dialog.findViewById(R.id.set_node);
+
+                                Button cancel = (Button) dialog.findViewById(R.id.set_cancel);
+                                cancel.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        // dialog here
-
-                                        // custom dialog
-                                        final Dialog dialog = new Dialog(MainActivity.this);
-                                        dialog.setContentView(R.layout.input_matrix);
-                                        // set the custom dialog components - text, image and button
-                                        TextView text = (TextView) dialog.findViewById(R.id.value_heading);
-                                        text.setText("Enetr Value at : " + x + " , " + y);
-
-                                        final EditText val_e = (EditText) dialog.findViewById(R.id.input_e);
-                                        Button dialogButton = (Button) dialog.findViewById(R.id.set_node);
-
-                                        Button cancel = (Button) dialog.findViewById(R.id.set_cancel);
-                                        cancel.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View view) {
-                                                dialog.dismiss();
-                                            }
-                                        });
-                                        // if button is clicked, close the custom dialog
-                                        dialogButton.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-
-                                                if (!val_e.getText().toString().equals("")) {
-                                                    t.setText(val_e.getText().toString());
-                                                    matrix[x][y] = val_e.getText().toString();
-                                                    dialog.dismiss();
-                                                }
-
-                                            }
-                                        });
-
-                                        dialog.show();
+                                        dialog.dismiss();
                                     }
                                 });
-                                tableRow.addView(t, j);
+                                // if button is clicked, close the custom dialog
+                                dialogButton.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
 
+                                        if (!val_e.getText().toString().equals("")) {
+                                            t.setText(val_e.getText().toString());
+                                            matrix[x][y] = val_e.getText().toString();
+                                            dialog.dismiss();
+                                        }
+
+                                    }
+                                });
+
+                                dialog.show();
                             }
-
-                            tl.addView(tableRow);
-                        }
-
+                        });
+                        tableRow.addView(t, j);
 
                     }
+
+                    tl.addView(tableRow);
                 }
 
 
             }
-        });
-
-        get_result.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int count = 0;
-                String[] elemnts = new String[row_val * col_val];
-
-
-                for (int row = 0; row < row_val; row++) {
-                    for (int col = 0; col < col_val; col++) {
-                        if (matrix[row][col] != null) {
-
-                            elemnts[count] = matrix[row][col];
-                            ++count;
-                        }
-                    }
-                }
-
-                if (row_val * col_val == count) {
-                    if (!object.setEelementsInMatrix(elemnts).equals("Invalid Matrix")) {
-                        result_t.setText("Total Cost: " + object.path_weight() + "\nFull path: " + object.havingFullpath() + "\n Path: " + object.getpath());
-                    } else
-                        result_t.setText("Invalid Matrix");
-
-                } else
-                    result_t.setText("Matrix is not well formatted");
-
-
-            }
-        });
+        }
 
     }
 
+    // calling result methods on input matrix from ShortestPathCost class.
+    public void getResult(View view) {
+        int count = 0;
+        String[] elemnts = new String[row_val * col_val];
 
+
+        for (int row = 0; row < row_val; row++) {
+            for (int col = 0; col < col_val; col++) {
+                if (matrix[row][col] != null) {
+
+                    elemnts[count] = matrix[row][col];
+                    ++count;
+                }
+            }
+        }
+
+        if (row_val * col_val == count) {
+            if (!matrixCreation.setEelementsInMatrix(elemnts).equals("Invalid Matrix")) {
+                result_t.setText("Total Cost: " + object.path_weight(matrixCreation.getMatrix()) + "\nFull path: " + object.havingFullpath() + "\n Path: " + object.getpath());
+                System.out.println("Total Cost: " + object.path_weight(matrixCreation.getMatrix()) + "\nFull path: " + object.havingFullpath() + "\n Path: " + object.getpath());
+
+            } else
+                result_t.setText("Invalid Matrix");
+
+        } else
+            result_t.setText("Matrix is not well formatted");
+
+    }
+
+    //clear the matrix and results
+    public void clear(View view) {
+        tl.removeAllViews();
+        result_t.setText("");
+        object.setPath("");
+
+    }
 }
